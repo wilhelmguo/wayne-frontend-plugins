@@ -388,11 +388,10 @@ export class ServiceComponent implements AfterContentInit, OnInit, OnDestroy {
             ports.push(`${port.port}:${port.targetPort}/${port.protocol}`);
           }
           tpls[i].ports = ports.join(', ');
-
-          const publishStatus = this.tplStatusMap[tpls[i].id];
-          if (publishStatus && publishStatus.length > 0) {
-            tpls[i].status = publishStatus;
-          }
+        }
+        const publishStatus = this.tplStatusMap[tpls[i].id];
+        if (publishStatus && publishStatus.length > 0) {
+          tpls[i].status = publishStatus;
         }
       }
     }
