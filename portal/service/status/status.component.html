@@ -21,6 +21,14 @@
             {{service?.spec.type}}
           </div>
         </div>
+        <div *ngIf="service && service.spec.type == 'LoadBalancer'" class="clr-row group">
+          <div class="clr-col-sm-3">
+            负载均衡 IP
+          </div>
+          <div class="clr-col-sm-9">
+            {{service?.status.loadBalancer?.ingress[0].ip}}
+          </div>
+        </div>
         <div class="clr-row group">
           <div class="clr-col-sm-3">
             集群IP
