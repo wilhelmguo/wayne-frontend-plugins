@@ -53,6 +53,18 @@ export class ServiceStatusComponent {
     return lables;
   }
 
+  getLoadBalanceIP(): string {
+    if (this.service && this.service.spec.type === 'LoadBalancer') {
+      if (this.service.status && this.service.status.loadBalancer && this.service.status.loadBalancer.ingress
+        && this.service.status.loadBalancer.ingress.length > 0 &&
+        this.service.status.loadBalancer.ingress[0]) {
+        return this.service.status.loadBalancer.ingress[0].ip;
+      }
+    }
+
+    return '未分配';
+  }
+
   newServiceStatus(cluster: string, serviceTpl: ServiceTpl) {
     this.createAppOpened = true;
 
